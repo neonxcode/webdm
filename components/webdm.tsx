@@ -39,7 +39,7 @@ export default function Website() {
     document.body.classList.toggle('dark', isDarkMode)
   }, [isDarkMode])
 
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = (sectionId: string) => {
     sectionRefs[sectionId].current?.scrollIntoView({ behavior: 'smooth' })
     setIsMenuOpen(false)
   }
