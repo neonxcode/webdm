@@ -52,7 +52,7 @@ export default function Website() {
     setIsMenuOpen(false)
   }
 
-  const navItems = [
+  const navItems: { id: SectionId; label: string }[] = [
     { id: 'services', label: 'Services' },
     { id: 'about', label: 'About' },
     { id: 'portfolio', label: 'Portfolio' },
