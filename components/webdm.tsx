@@ -8,18 +8,25 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Switch } from "@/components/ui/switch"
-import { Code, Laptop, Smartphone, Users, Star, Mail, ChevronDown, Menu, Briefcase, Award, Coffee, Globe, Rocket, Target, Zap, Layers, Shield, Cpu, Sun, Moon, Plus, Minus, Clock } from 'lucide-react'
+import {
+  Code, Laptop, Smartphone, Users, Star, Mail, ChevronDown, Menu, Briefcase, Award, Coffee, Globe,
+  Rocket, Target, Zap, Layers, Shield, Cpu, Sun, Moon, Plus, Minus, Clock
+} from 'lucide-react'
+
+// ✅ Add this type definition
+type SectionId = 'services' | 'about' | 'portfolio' | 'blog' | 'faq' | 'contact'
 
 export default function Website() {
   const { scrollYProgress } = useScroll()
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isDarkMode, setIsDarkMode] = useState(false)  // Changed to false for initial light mode
-  const [activeAccordion, setActiveAccordion] = useState(null)
+  const [isDarkMode, setIsDarkMode] = useState(false)
+  const [activeAccordion, setActiveAccordion] = useState<number | null>(null)
 
   const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1])
 
-  const sectionRefs = {
+  // ✅ Strongly type your sectionRefs
+  const sectionRefs: Record<SectionId, React.RefObject<HTMLElement>> = {
     services: useRef(null),
     about: useRef(null),
     portfolio: useRef(null),
@@ -39,7 +46,8 @@ export default function Website() {
     document.body.classList.toggle('dark', isDarkMode)
   }, [isDarkMode])
 
-  const scrollToSection = (sectionId: string) => {
+  // ✅ Enforce sectionId type
+  const scrollToSection = (sectionId: SectionId) => {
     sectionRefs[sectionId].current?.scrollIntoView({ behavior: 'smooth' })
     setIsMenuOpen(false)
   }
