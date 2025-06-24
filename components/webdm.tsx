@@ -137,7 +137,7 @@ export default function Website() {
     setIsDarkMode(!isDarkMode)
   }
 
-  const toggleAccordion = (index) => {
+  const toggleAccordion = (index: number) => {
     setActiveAccordion(activeAccordion === index ? null : index)
   }
 
